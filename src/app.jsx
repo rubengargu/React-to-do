@@ -5,8 +5,9 @@ import { TodoList } from "./components/TodoList";
 const KEY = "todoApp.todos"
 
 export function App(){
-    const [todos, setTodos] = useState([ {id:1, task:"Tarea 1", completed :false
-}])
+    const [todos, setTodos] = useState([ 
+        {id:1, task:"Tarea 1", completed :false}
+    ]);
 
 const todoTaskRef = useRef();
 useEffect(() =>{
@@ -14,7 +15,7 @@ useEffect(() =>{
     if(storedTodos){
         setTodos(storedTodos)
     }
-})
+}, []);
 
 useEffect (() =>{
     localStorage.setItem("KEY", JSON.stringify(todos))
@@ -26,7 +27,7 @@ const toggleToDo = (id) =>{
     todo.completed = !todo.completed;
     setTodos(newTodos);
 };
-const handleTodoAdd = () =>{
+const handleTodoAdd = (event) =>{
     const task = todoTaskRef.current.value;
     if (task === " ")return;
 
@@ -53,3 +54,5 @@ const handleClearAll = () =>{
     )
     
 }
+    
+    
